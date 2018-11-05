@@ -13,6 +13,6 @@ This is a project to demonstrate using API calls in Node, and storing the API ke
 
 ## How to Run liri-node-app
 1. At command prompt type one of the following commands:
-- node concert-this *< artist/band name here>*
-- node spotify-this-song *< song title here>*
-- node movie-this *< movie title here>*
+- node liri.js concert-this *< artist/band name here>*
+- node liri.js spotify-this-song *< song title here>*
+- node liri.js movie-this *< movie title here>*

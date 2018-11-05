@@ -1,6 +1,7 @@
 require('dotenv').config();
 var request = require("request");
 var Spotify = require('node-spotify-api');
+var fs = require("fs");
 
 var command = process.argv[2];
 var searchString = processArgvForQuery(process.argv);
@@ -25,23 +26,26 @@ function concertThis(artist) {
         // If the request is successful (i.e. if the response status code is 200)
         if (!error && response.statusCode === 200) {
             var concerts = JSON.parse(body); 
-            // console.log(concerts);
-            // for (var key in concerts) {
-            //     var item = concerts[key];
-            //     for (var key2 in item) {
-            //       console.log(item[key2]);
-            //     }
-            //   }
+         
             if (concerts == null || concerts.length == 0) {
                 console.log("No scheduled concerts at this time for : " + artist);
             }
             else {
-            var time = moment(concerts[0].datetime).format('MMMM Do YYYY');
-                console.log("\n\n");
-                console.log("* Venue : " +concerts[0].venue.name);
-                console.log("* Location : " +concerts[0].venue.city);
-                console.log("* Date of Event: " + time);
-                console.log("\n\n");
+                var time = moment(concerts[0].datetime).format('MMMM Do YYYY');
+                var output = "\n\n";
+                output += "* Venue : " +concerts[0].venue.name;
+                output += "* Location : " +concerts[0].venue.city;
+                output += "* Date of Event: " + time;
+                output += "\n\n";
+                console.log(output);
+
+                // This block of code will write to a file called "log.txt".
+                fs.appendFile("log.txt", "Search: " + artist + ": " + output, function(err) {
+                    // If the code experiences any errors it will log the error to the console.
+                    if (err) {
+                    return console.log(err);
+                    }
+                });
             }
         }
 
@@ -65,18 +69,21 @@ function spotifyThisSong(songName) {
             return console.log('Error occurred: ' + err);
         }
         
-        //console.log(data); 
-        //console.log(data.tracks.items.length);
         var items = data.tracks.items[0];
-        //console.log(JSON.stringify(items, null, 2));
-        //for (var i = 0 ; i<items.length;i++) {
-            console.log("\n\n");
-            console.log("* Artist: " + items.album.artists[0].name);
-            console.log("* Song Name: " + items.name);
-            console.log("* Preview URL: " + items.preview_url);
-            console.log("* Album Name: " + items.album.name);
-            console.log("\n\n");
-        //}
+        var output = "\n\n";
+        output += "* Artist: " + items.album.artists[0].name;
+        output += "* Song Name: " + items.name;
+        output += "* Preview URL: " + items.preview_url;
+        output += "* Album Name: " + items.album.name;
+        output += "\n\n";
+        console.log(output);
+        // This block of code will write to a file called "log.txt".
+        fs.appendFile("log.txt", "Search: " + songName + ": " + output, function(err) {
+            // If the code experiences any errors it will log the error to the console.
+            if (err) {
+            return console.log(err);
+            }
+        });
         
     });
 }
@@ -98,16 +105,24 @@ function movieThis(movieTitle) {
                 imdbRating = ratings[i].Value;
             }
         }
-        console.log("\n\n");
-        console.log("* Title: " + movie.Title);
-        console.log("* Year: " + movie.Year);
-        console.log("* IMDB Rating: " + imdbRating);
-        console.log("* Rotten Tomatoes Rating: " + rtRating);
-        console.log("* Country: " + movie.Country);
-        console.log("* Language: " + movie.Language);
-        console.log("* Plot: " + movie.Plot);
-        console.log("* Actors: " + movie.Actors);
-        console.log("\n\n");
+        var output = "\n\n";
+        output += "* Title: " + movie.Title;
+        output += "* Year: " + movie.Year;
+        output += "* IMDB Rating: " + imdbRating;
+        output += "* Rotten Tomatoes Rating: " + rtRating;
+        output += "* Country: " + movie.Country;
+        output += "* Language: " + movie.Language;
+        output += "* Plot: " + movie.Plot;
+        output += "* Actors: " + movie.Actors;
+        output += "\n\n";
+        console.log(output);
+        // This block of code will write to a file called "log.txt".
+        fs.appendFile("log.txt", "Search: " + movieTitle + ": " + output, function(err) {
+            // If the code experiences any errors it will log the error to the console.
+            if (err) {
+                return console.log(err);
+            }
+        });
     }
     });
 }
