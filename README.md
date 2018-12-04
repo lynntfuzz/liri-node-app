@@ -6,6 +6,8 @@ https://github.com/lynntfuzz\
 
 This is a project to demonstrate using API calls in Node, and storing the API keys in a .env file.
 
+![](liri-screen.gif)
+
 ## How to Install liri-node-app
 1. Download repository
 2. Create a .env file with a SPOTIFY_ID and SPOTIFY_SECRET. See developer.spotify.com.
