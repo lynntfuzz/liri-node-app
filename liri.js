@@ -33,8 +33,8 @@ function concertThis(artist) {
             else {
                 var time = moment(concerts[0].datetime).format('MMMM Do YYYY');
                 var output = "\n\n";
-                output += "* Venue : " +concerts[0].venue.name;
-                output += "* Location : " +concerts[0].venue.city;
+                output += "* Venue : " +concerts[0].venue.name + "\n";
+                output += "* Location : " +concerts[0].venue.city + "\n";
                 output += "* Date of Event: " + time;
                 output += "\n\n";
                 console.log(output);
@@ -71,10 +71,10 @@ function spotifyThisSong(songName) {
         
         var items = data.tracks.items[0];
         var output = "\n\n";
-        output += "* Artist: " + items.album.artists[0].name;
-        output += "* Song Name: " + items.name;
-        output += "* Preview URL: " + items.preview_url;
-        output += "* Album Name: " + items.album.name;
+        output += "* Artist: " + items.album.artists[0].name  + "\n";
+        output += "* Song Name: " + items.name + "\n";
+        output += "* Preview URL: " + items.preview_url + "\n";
+        output += "* Album Name: " + items.album.name + "\n";
         output += "\n\n";
         console.log(output);
         // This block of code will write to a file called "log.txt".
@@ -106,13 +106,13 @@ function movieThis(movieTitle) {
             }
         }
         var output = "\n\n";
-        output += "* Title: " + movie.Title;
-        output += "* Year: " + movie.Year;
-        output += "* IMDB Rating: " + imdbRating;
-        output += "* Rotten Tomatoes Rating: " + rtRating;
-        output += "* Country: " + movie.Country;
-        output += "* Language: " + movie.Language;
-        output += "* Plot: " + movie.Plot;
+        output += "* Title: " + movie.Title + "\n";
+        output += "* Year: " + movie.Year + "\n";
+        output += "* IMDB Rating: " + imdbRating + "\n";
+        output += "* Rotten Tomatoes Rating: " + rtRating + "\n";
+        output += "* Country: " + movie.Country + "\n";
+        output += "* Language: " + movie.Language + "\n";
+        output += "* Plot: " + movie.Plot + "\n";
         output += "* Actors: " + movie.Actors;
         output += "\n\n";
         console.log(output);
